@@ -3,7 +3,7 @@ import 'package:nico_music_player/Models/playlistModel.dart';
 import 'package:nico_music_player/View/favorite.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'play.dart';
-import 'playlist.dart';
+import 'playlist/playlist.dart';
 import '../Audio/song_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -80,20 +80,30 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                   ),
-                  Container(
-                    height: 120,
-                    width: 180,
-                    padding: EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 25, 134, 193),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Favorite',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                  GestureDetector(
+                    child: Container(
+                      height: 120,
+                      width: 180,
+                      padding: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 25, 134, 193),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Favorite',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
                       ),
                     ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Favorite()
+                        )
+                      );
+                    },
                   ),
                 ],
               ),

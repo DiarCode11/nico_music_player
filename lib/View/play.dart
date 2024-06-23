@@ -18,18 +18,23 @@ class _PlayState extends State<Play> {
   late SongModel currentSong;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
+  bool isFavorite = false;
 
   @override
   void initState() {
     super.initState();
 
     currentSong = widget.songService.getSongList()[widget.index];
+    _registerAudioPlayerListeners();
+
+    playSong(widget.index);
+  }
+
+  void _registerAudioPlayerListeners() {
     widget.songService.audioPlayer.onDurationChanged.listen((newDuration) {
-      if (mounted) {
-        setState(() {
-          duration = newDuration;
-        });
-      }
+      setState(() {
+        duration = newDuration;
+      });
     });
 
     widget.songService.audioPlayer.onPositionChanged.listen((newPosition) {
@@ -106,7 +111,22 @@ class _PlayState extends State<Play> {
               ),
             ),
           ),
-          SizedBox(height: 70),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.favorite_border,
+                  size: 50,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(width: 20,)
+            ],
+          ),
+          SizedBox(height: 40,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
